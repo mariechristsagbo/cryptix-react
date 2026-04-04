@@ -1,11 +1,12 @@
 import { useState } from "react";
 
 import { faqItems } from "../../data";
-import { ChevronIcon } from "../../../../shared/icons";
 import { Container, PrimaryButton, SectionHeading } from "../../../../shared/ui";
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
+  const midpoint = Math.ceil(faqItems.length / 2);
+  const columns = [faqItems.slice(0, midpoint), faqItems.slice(midpoint)];
 
   return (
     <section id="faq" className="py-24 sm:py-32">
@@ -20,41 +21,53 @@ export function FaqSection() {
           </PrimaryButton>
         </div>
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-2">
-          {faqItems.map((item, index) => {
-            const isOpen = index === openIndex;
+        <div className="mt-12 grid border-t border-white/10 lg:grid-cols-2">
+          {columns.map((columnItems, columnIndex) => (
+            <div
+              key={columnIndex}
+              className={columnIndex === 1 ? "lg:border-l lg:border-white/10" : ""}
+            >
+              {columnItems.map((item, itemIndex) => {
+                const index = columnIndex * midpoint + itemIndex;
+                const isOpen = index === openIndex;
 
-            return (
-              <article
-                key={item.question}
-                className="rounded-[28px] border border-white/10 bg-white/[0.04]"
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-                >
-                  <span className="text-base font-medium text-white">{item.question}</span>
-                  <ChevronIcon
-                    className={`h-5 w-5 flex-none text-white transition-transform ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`grid transition-[grid-template-rows] duration-300 ${
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="px-6 pb-6 text-sm leading-7 text-[#b0b0b0]">
-                      {item.answer}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+                return (
+                  <article key={item.question} className="overflow-hidden border-b border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                      className="flex w-full items-start justify-between gap-5 px-6 py-7 text-left sm:gap-6 sm:px-8 sm:py-8"
+                    >
+                      <div className="min-w-0">
+                        <span className="block text-base font-medium tracking-[-0.03em] text-white sm:text-lg">
+                          {item.question}
+                        </span>
+                      </div>
+                      <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center text-2xl leading-none text-white sm:text-[26px]">
+                        {isOpen ? "\u00d7" : "+"}
+                      </span>
+                    </button>
+
+                    <div
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                        isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p
+                          className={`max-w-[680px] px-6 text-sm leading-7 text-[#b0b0b0] transition-[padding,opacity] duration-300 ease-out sm:px-8 sm:text-base sm:leading-8 ${
+                            isOpen ? "pb-7 opacity-100 sm:pb-8" : "pb-0 opacity-0"
+                          }`}
+                        >
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          ))}
         </div>
       </Container>
     </section>
