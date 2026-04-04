@@ -1,4 +1,4 @@
-import { assets, heroStats } from "../../data";
+import { assets } from "../../data";
 import { StarIcon } from "../../../../shared/icons";
 import { Container, GhostButton, PrimaryButton } from "../../../../shared/ui";
 
@@ -64,35 +64,25 @@ export function HeroSection() {
             <GhostButton href="#pricing">Explore pricing</GhostButton>
           </div>
         </div>
+      </Container>
 
-        <div
-          className="hero-fade mt-14 grid gap-4 lg:grid-cols-[220px_minmax(0,1fr)]"
-          style={{ animationDelay: "0.96s" }}
-        >
-          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-            {heroStats.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-[28px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl"
-              >
-                <p className="text-sm text-[#8b8e98]">{item.label}</p>
-                <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-white">
-                  {item.value}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="dashboard-shell rounded-[32px] border border-white/10 bg-[#0e1019] p-3 shadow-[0_40px_120px_rgba(0,0,0,0.45)]">
-            <div className="dashboard-glow" />
-            <img
-              src={assets.heroDashboard}
-              alt="Cryptix dashboard"
-              className="relative w-full rounded-[24px] border border-white/10 object-cover"
-            />
+      <div
+        className="hero-fade relative z-10 mt-14 w-full px-4 sm:px-6"
+        style={{ animationDelay: "0.96s" }}
+      >
+        <div className="mx-auto w-full max-w-[min(1280px,calc(100vw-2rem))]">
+          <div className="dashboard-shell rounded-[28px] border border-white/10 bg-[#0e1019] p-2 shadow-[0_40px_120px_rgba(0,0,0,0.45)] sm:rounded-[32px] sm:p-2.5 md:p-3">
+            <div className="relative overflow-hidden rounded-[20px] border border-white/10 sm:rounded-[24px]">
+              <img
+                src={assets.heroDashboard}
+                alt="Cryptix dashboard"
+                className="relative block w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2 bg-[#0b0911]" />
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

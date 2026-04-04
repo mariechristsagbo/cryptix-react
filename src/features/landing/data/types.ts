@@ -3,11 +3,6 @@ export interface NavLink {
   href: string;
 }
 
-export interface StatItem {
-  label: string;
-  value: string;
-}
-
 export interface BenefitItem {
   title: string;
   description: string;
