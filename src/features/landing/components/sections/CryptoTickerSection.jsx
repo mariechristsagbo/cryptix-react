@@ -4,10 +4,16 @@ import { cryptos } from "../../data";
 import { Container, PrimaryButton, SectionHeading } from "../../../../shared/ui";
 
 export function CryptoTickerSection() {
-  const rows = useMemo(
-    () => [cryptos, [...cryptos.slice(2), ...cryptos.slice(0, 2)], cryptos],
-    []
-  );
+  const rows = useMemo(() => {
+    const bySymbol = Object.fromEntries(cryptos.map((crypto) => [crypto.symbol, crypto]));
+
+    return [
+      [bySymbol.XRP, bySymbol.ETH, bySymbol.BTC, bySymbol.DASH],
+      [bySymbol.BTC, bySymbol.ETH, bySymbol.SOL, bySymbol.DASH],
+      [bySymbol.XRP, bySymbol.ETH, bySymbol.BTC, bySymbol.SOL],
+      [bySymbol.BTC, bySymbol.ETH, bySymbol.SOL, bySymbol.DASH]
+    ];
+  }, []);
 
   return (
     <section id="allcryptos" className="py-24 sm:py-32">
@@ -24,35 +30,47 @@ export function CryptoTickerSection() {
             </PrimaryButton>
           </div>
 
-          <div className="space-y-4 overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] p-4">
+          <div className="overflow-hidden rounded-[36px] border border-white/10 bg-[#0c0c14] p-4 sm:p-5">
             {rows.map((row, index) => (
               <div
                 key={index}
-                className={`marquee-row ${index % 2 === 1 ? "marquee-row-reverse" : ""}`}
+                className={`marquee-row ${index % 2 === 1 ? "marquee-row-reverse" : ""} ${
+                  index === 0 ? "" : "mt-4"
+                }`}
               >
                 {[...row, ...row].map((crypto, itemIndex) => (
                   <article
                     key={`${crypto.symbol}-${itemIndex}`}
-                    className="min-w-[220px] rounded-[24px] border border-white/10 bg-[#11131d] p-5"
+                    className="min-w-[280px] rounded-full border border-white/8 bg-[#181922] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] sm:min-w-[300px]"
                   >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="text-base font-medium text-white">{crypto.name}</p>
-                        <p className="mt-1 text-sm text-[#7d8391]">{crypto.symbol}</p>
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-14 w-14 flex-none items-center justify-center rounded-full border border-white/10 bg-[#21222a]">
+                        <img
+                          src={crypto.logoUrl}
+                          alt={`${crypto.name} logo`}
+                          className="h-10 w-10 rounded-full object-contain"
+                          loading="lazy"
+                        />
                       </div>
-                      <span
-                        className={`rounded-full px-2 py-1 text-xs ${
-                          crypto.change.startsWith("-")
-                            ? "bg-[#ff4d6d]/10 text-[#ff8ba0]"
-                            : "bg-[#00ffb2]/10 text-[#00ffb2]"
-                        }`}
-                      >
-                        {crypto.change}
-                      </span>
+
+                      <div className="min-w-0">
+                        <p className="truncate text-[17px] font-medium tracking-[-0.03em] text-white sm:text-[18px]">
+                          {crypto.name}
+                        </p>
+                        <div className="mt-1 flex items-center gap-2 text-[14px] sm:text-[15px]">
+                          <span className="text-[#9ea2ad]">{crypto.price}</span>
+                          <span
+                            className={
+                              crypto.change.startsWith("-")
+                                ? "font-medium text-[#ff4d86]"
+                                : "font-medium text-[#59db9e]"
+                            }
+                          >
+                            {crypto.change}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="mt-8 text-3xl font-semibold tracking-[-0.05em] text-white">
-                      {crypto.price}
-                    </p>
                   </article>
                 ))}
               </div>

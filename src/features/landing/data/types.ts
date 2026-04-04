@@ -18,6 +18,7 @@ export interface CryptoItem {
   symbol: string;
   price: string;
   change: string;
+  logoUrl: string;
 }
 
 export interface StepItem {
