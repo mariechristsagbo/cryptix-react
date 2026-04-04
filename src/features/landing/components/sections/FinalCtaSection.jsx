@@ -1,10 +1,13 @@
+import { motion } from "framer-motion";
+
 import { Container, PrimaryButton, SectionHeading } from "../../../../shared/ui";
+import { fadeUp, scaleIn } from "../../../../shared/animation/variants";
 
 export function FinalCtaSection() {
   return (
-    <section className="py-24 sm:py-32">
+    <motion.section className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
-        <div className="px-6 py-16 text-center sm:px-10">
+        <motion.div className="px-6 py-16 text-center sm:px-10" {...scaleIn(0.08)}>
           <SectionHeading
             title="Ready to take control of your crypto?"
             description="Join thousands of users who trust Cryptix for secure, seamless, and efficient cryptocurrency transactions."
@@ -13,8 +16,8 @@ export function FinalCtaSection() {
           <PrimaryButton href="#pricing" className="mt-8">
             Get started now
           </PrimaryButton>
-        </div>
+        </motion.div>
       </Container>
-    </section>
+    </motion.section>
   );
 }

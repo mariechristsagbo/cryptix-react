@@ -1,9 +1,12 @@
+import { motion } from "framer-motion";
+
 import { assets, footerLinks, socialLinks } from "../../data";
 import { Container } from "../../../../shared/ui";
+import { fadeUp } from "../../../../shared/animation/variants";
 
 export function Footer() {
   return (
-    <footer className="py-14">
+    <motion.footer className="py-14" {...fadeUp(0.04, 18)}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
@@ -44,6 +47,6 @@ export function Footer() {
           </div>
         </div>
       </Container>
-    </footer>
+    </motion.footer>
   );
 }

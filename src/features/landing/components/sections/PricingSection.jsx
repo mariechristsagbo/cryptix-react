@@ -1,14 +1,16 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 import { pricingPlans } from "../../data";
 import { CheckIcon } from "../../../../shared/icons";
 import { Container, PrimaryButton, SectionHeading } from "../../../../shared/ui";
+import { fadeUp, staggerContainer, staggerItem } from "../../../../shared/animation/variants";
 
 export function PricingSection() {
   const [billing, setBilling] = useState("monthly");
 
   return (
-    <section id="pricing" className="border-y border-white/10 py-24 sm:py-32">
+    <motion.section id="pricing" className="border-y border-white/10 py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <SectionHeading
           eyebrow="Choose Your Plan. Start Trading Today."
@@ -37,11 +39,18 @@ export function PricingSection() {
 
         <p className="mt-3 text-center text-sm font-medium text-[#00ffb2]">20% OFF</p>
 
-        <div className="mt-12 grid gap-5 xl:grid-cols-3">
+        <motion.div
+          className="mt-12 grid gap-5 xl:grid-cols-3"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.18 }}
+        >
           {pricingPlans.map((plan) => (
-            <article
+            <motion.article
               key={plan.name}
-              data-reveal
+              variants={staggerItem}
+              whileHover={{ y: -10, transition: { duration: 0.28 } }}
               className={`reveal rounded-[32px] border p-6 ${
                 plan.badge
                   ? "border-[#00ffb2]/40 bg-[#0f1715]"
@@ -90,10 +99,10 @@ export function PricingSection() {
                   </li>
                 ))}
               </ul>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </Container>
-    </section>
+    </motion.section>
   );
 }

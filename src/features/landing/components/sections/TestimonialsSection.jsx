@@ -1,7 +1,9 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { assets, testimonials } from "../../data";
 import { Container, SectionHeading } from "../../../../shared/ui";
+import { fadeUp, easing } from "../../../../shared/animation/variants";
 
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -17,7 +19,7 @@ export function TestimonialsSection() {
   const active = testimonials[activeIndex];
 
   return (
-    <section id="testimonials" className="py-24 sm:py-32">
+    <motion.section id="testimonials" className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <SectionHeading
           eyebrow="Trusted by Crypto Enthusiasts Worldwide"
@@ -25,15 +27,22 @@ export function TestimonialsSection() {
           centered
         />
 
-        <div
-          data-reveal
-          className="reveal relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.04] p-6 sm:p-8"
+        <motion.div
+          className="relative mx-auto mt-14 max-w-4xl overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.04] p-6 sm:p-8"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ duration: 0.8 }}
         >
           <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
           <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-white/10 blur-[88px]" />
 
           <div className="grid gap-10 lg:grid-cols-[180px_minmax(0,1fr)_140px] lg:items-center">
-            <div className="relative flex items-center justify-center lg:justify-start">
+            <motion.div
+              className="relative flex items-center justify-center lg:justify-start"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+            >
               <div className="relative h-24 w-24 overflow-hidden rounded-[28px] border border-white/10 bg-white/5">
                 <img
                   src={assets.testimonialIcon}
@@ -48,17 +57,25 @@ export function TestimonialsSection() {
                   className="h-full w-full object-cover"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div>
-              <p className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-[30px] sm:leading-[1.35]">
-                "{active.quote}"
-              </p>
-              <div className="mt-8">
-                <p className="text-base font-medium text-white">{active.name}</p>
-                <p className="mt-1 text-sm text-[#b0b0b0]">{active.role}</p>
-              </div>
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.name}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.45, ease: easing }}
+              >
+                <p className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-[30px] sm:leading-[1.35]">
+                  "{active.quote}"
+                </p>
+                <div className="mt-8">
+                  <p className="text-base font-medium text-white">{active.name}</p>
+                  <p className="mt-1 text-sm text-[#b0b0b0]">{active.role}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
             <div className="flex flex-col gap-4 lg:items-end">
               <p className="text-sm text-[#b0b0b0]">
@@ -86,8 +103,8 @@ export function TestimonialsSection() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
-    </section>
+    </motion.section>
   );
 }

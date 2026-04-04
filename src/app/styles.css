@@ -27,3 +27,65 @@ a {
 * {
   box-sizing: border-box;
 }
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.button-shine__beam {
+  position: absolute;
+  inset: -55% auto -55% -35%;
+  width: 42%;
+  transform: translateX(-240%) rotate(20deg);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 12%,
+    rgba(255, 255, 255, 0.82) 50%,
+    rgba(255, 255, 255, 0.12) 88%,
+    transparent 100%
+  );
+  opacity: 0;
+  filter: blur(1px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.button-shine {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.35s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.button-shine:hover,
+.button-shine:focus-visible {
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.button-shine:hover .button-shine__beam,
+.button-shine:focus-visible .button-shine__beam {
+  opacity: 1;
+  animation: button-shine-pass 1.05s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes button-shine-pass {
+  0% {
+    transform: translateX(-240%) rotate(20deg);
+  }
+  100% {
+    transform: translateX(680%) rotate(20deg);
+  }
+}

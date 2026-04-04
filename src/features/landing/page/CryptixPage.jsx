@@ -12,12 +12,9 @@ import { PricingSection } from "../components/sections/PricingSection";
 import { StepsSection } from "../components/sections/StepsSection";
 import { TestimonialsSection } from "../components/sections/TestimonialsSection";
 import { WhySection } from "../components/sections/WhySection";
-import { useReveal } from "../hooks/useReveal";
 
 export function CryptixPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useReveal();
 
   return (
     <div className="min-h-screen bg-[#08070e] text-white">

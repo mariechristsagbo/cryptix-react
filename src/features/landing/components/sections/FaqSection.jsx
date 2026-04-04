@@ -1,7 +1,9 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 import { faqItems } from "../../data";
 import { Container, PrimaryButton, SectionHeading } from "../../../../shared/ui";
+import { fadeUp } from "../../../../shared/animation/variants";
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -9,7 +11,7 @@ export function FaqSection() {
   const columns = [faqItems.slice(0, midpoint), faqItems.slice(midpoint)];
 
   return (
-    <section id="faq" className="py-24 sm:py-32">
+    <motion.section id="faq" className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -21,7 +23,13 @@ export function FaqSection() {
           </PrimaryButton>
         </div>
 
-        <div className="mt-12 grid border-t border-white/10 lg:grid-cols-2">
+        <motion.div
+          className="mt-12 grid border-t border-white/10 lg:grid-cols-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.14 }}
+          transition={{ duration: 0.8, delay: 0.08 }}
+        >
           {columns.map((columnItems, columnIndex) => (
             <div
               key={columnIndex}
@@ -68,8 +76,8 @@ export function FaqSection() {
               })}
             </div>
           ))}
-        </div>
+        </motion.div>
       </Container>
-    </section>
+    </motion.section>
   );
 }

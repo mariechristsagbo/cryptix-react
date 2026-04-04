@@ -1,7 +1,9 @@
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 
 import { cryptos } from "../../data";
 import { Container, PrimaryButton, SectionHeading } from "../../../../shared/ui";
+import { fadeUp } from "../../../../shared/animation/variants";
 
 export function CryptoTickerSection() {
   const rows = useMemo(() => {
@@ -16,7 +18,7 @@ export function CryptoTickerSection() {
   }, []);
 
   return (
-    <section id="allcryptos" className="py-24 sm:py-32">
+    <motion.section id="allcryptos" className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <div className="grid gap-12 lg:grid-cols-[440px_minmax(0,1fr)] lg:items-start">
           <div>
@@ -30,7 +32,13 @@ export function CryptoTickerSection() {
             </PrimaryButton>
           </div>
 
-          <div className="overflow-hidden rounded-[36px] border border-white/10 bg-[#0c0c14] p-4 sm:p-5">
+          <motion.div
+            className="overflow-hidden rounded-[36px] border border-white/10 bg-[#0c0c14] p-4 sm:p-5"
+            initial={{ opacity: 0, scale: 0.985 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.85, delay: 0.1 }}
+          >
             {rows.map((row, index) => (
               <div
                 key={index}
@@ -75,9 +83,9 @@ export function CryptoTickerSection() {
                 ))}
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </Container>
-    </section>
+    </motion.section>
   );
 }

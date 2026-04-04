@@ -1,16 +1,3 @@
-.hero-word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(14px);
-  animation: word-in 0.8s cubic-bezier(0.12, 0.23, 0.17, 0.99) forwards;
-}
-
-.hero-fade {
-  opacity: 0;
-  transform: translateY(28px);
-  animation: hero-fade-in 0.9s cubic-bezier(0.12, 0.23, 0.17, 0.99) forwards;
-}
-
 .hero-orb {
   position: absolute;
   border-radius: 999px;
@@ -49,19 +36,6 @@
   filter: blur(40px);
 }
 
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .marquee-row {
   display: flex;
   width: max-content;
@@ -71,20 +45,6 @@
 
 .marquee-row-reverse {
   animation-name: marquee-right;
-}
-
-@keyframes word-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes hero-fade-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @keyframes marquee-left {
@@ -109,5 +69,12 @@
   .hero-orb-left,
   .hero-orb-right {
     opacity: 0.16;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-row,
+  .marquee-row-reverse {
+    animation: none;
   }
 }

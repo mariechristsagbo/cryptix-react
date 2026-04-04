@@ -1,10 +1,18 @@
+import { AnimatePresence, motion } from "framer-motion";
+
 import { navLinks } from "../../data";
 import { LogoMark } from "../../../../shared/icons";
 import { Container, GhostButton } from "../../../../shared/ui";
+import { easing } from "../../../../shared/animation/variants";
 
 export function Navbar({ isOpen, onToggle, onNavigate }) {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
+    <motion.header
+      className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"
+      initial={{ opacity: 0, y: -18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: easing }}
+    >
       <Container className="rounded-[28px] border border-white/10 bg-[rgba(8,7,14,0.8)] backdrop-blur-xl">
         <div className="flex h-20 items-center justify-between">
           <a href="#" className="flex items-center gap-2">
@@ -44,26 +52,34 @@ export function Navbar({ isOpen, onToggle, onNavigate }) {
           </button>
         </div>
 
-        {isOpen ? (
-          <div className="border-t border-white/10 py-4 lg:hidden">
-            <nav className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-[#b0b0b0]"
-                  onClick={onNavigate}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <GhostButton href="#pricing" className="justify-center">
-                Get started
-              </GhostButton>
-            </nav>
-          </div>
-        ) : null}
+        <AnimatePresence initial={false}>
+          {isOpen ? (
+            <motion.div
+              className="border-t border-white/10 py-4 lg:hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: easing }}
+            >
+              <nav className="flex flex-col gap-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-[#b0b0b0]"
+                    onClick={onNavigate}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <GhostButton href="#pricing" className="justify-center">
+                  Get started
+                </GhostButton>
+              </nav>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </Container>
-    </header>
+    </motion.header>
   );
 }
