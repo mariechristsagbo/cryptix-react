@@ -59,23 +59,26 @@ export function TestimonialsSection() {
               </div>
             </motion.div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.name}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.45, ease: easing }}
-              >
-                <p className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-[30px] sm:leading-[1.35]">
-                  "{active.quote}"
-                </p>
-                <div className="mt-8">
-                  <p className="text-base font-medium text-white">{active.name}</p>
-                  <p className="mt-1 text-sm text-[#b0b0b0]">{active.role}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            <div className="relative min-h-[22rem] sm:min-h-[20rem] lg:min-h-[19rem]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active.name}
+                  className="absolute inset-0 flex flex-col"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.45, ease: easing }}
+                >
+                  <p className="text-2xl font-medium tracking-[-0.04em] text-white sm:text-[30px] sm:leading-[1.35]">
+                    &ldquo;{active.quote}&rdquo;
+                  </p>
+                  <div className="mt-8 shrink-0">
+                    <p className="text-base font-medium text-white">{active.name}</p>
+                    <p className="mt-1 text-sm text-[#b0b0b0]">{active.role}</p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             <div className="flex flex-col gap-4 lg:items-end">
               <p className="text-sm text-[#b0b0b0]">

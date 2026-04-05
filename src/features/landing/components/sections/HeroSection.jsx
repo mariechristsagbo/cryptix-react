@@ -27,7 +27,10 @@ export function HeroSection() {
   const rightOrbX = useTransform(scrollYProgress, [0, 1], [0, 70]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden pt-24 sm:pt-40">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden pt-32 sm:pt-40"
+    >
       <motion.div className="hero-orb hero-orb-left" style={{ x: leftOrbX }} />
       <motion.div className="hero-orb hero-orb-right" style={{ x: rightOrbX }} />
       <Container className="relative">

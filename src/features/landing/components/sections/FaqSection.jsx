@@ -18,7 +18,7 @@ export function FaqSection() {
             eyebrow="Your Questions, Answered"
             title="Find everything you need to know about Cryptix, from security to supported assets."
           />
-          <PrimaryButton href="#pricing">
+          <PrimaryButton href="#pricing" className="self-start lg:self-auto">
             Create account now
           </PrimaryButton>
         </div>

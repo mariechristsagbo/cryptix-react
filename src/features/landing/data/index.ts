@@ -2,7 +2,7 @@ export { assets } from "./assets";
 export { benefits } from "./benefits";
 export { cryptos } from "./cryptos";
 export { faqItems } from "./faq";
-export { footerLinks, socialLinks } from "./footer";
+export { footerLinks } from "./footer";
 export { navLinks } from "./navigation";
 export { pricingPlans } from "./pricing";
 export { steps } from "./steps";
@@ -15,7 +15,6 @@ export type {
   FaqItem,
   NavLink,
   PricingPlan,
-  SocialLink,
   StepItem,
   TestimonialItem
 } from "./types";

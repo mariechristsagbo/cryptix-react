@@ -13,7 +13,7 @@ export function StepsSection() {
             eyebrow="How It Works"
             title="A simple, fast, and secure platform to manage your cryptocurrencies in just a few steps."
           />
-          <PrimaryButton href="#pricing">
+          <PrimaryButton href="#pricing" className="self-start lg:self-auto">
             Create account now
           </PrimaryButton>
         </div>

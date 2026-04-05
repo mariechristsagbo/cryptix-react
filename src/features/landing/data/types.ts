@@ -43,11 +43,6 @@ export interface FaqItem {
   answer: string;
 }
 
-export interface SocialLink {
-  label: string;
-  href: string;
-}
-
 export interface Assets {
   heroDashboard: string;
   testimonialIcon: string;
