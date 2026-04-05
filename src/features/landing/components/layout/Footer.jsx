@@ -17,6 +17,17 @@ export function Footer() {
               Secure, fast, and seamless crypto trading. Cryptix makes digital
               assets effortless.
             </p>
+            <p className="mt-4 text-sm text-[#b0b0b0]">
+              Built by{" "}
+              <a
+                href="https://www.linkedin.com/in/marie-christ-sagbo/"
+                className="font-medium text-white underline-offset-2 transition-colors hover:text-[#00ffb2] hover:underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Marie-Christ Sgbo
+              </a>
+            </p>
           </div>
 
           <div>
