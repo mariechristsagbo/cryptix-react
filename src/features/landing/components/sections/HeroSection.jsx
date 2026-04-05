@@ -27,7 +27,7 @@ export function HeroSection() {
   const rightOrbX = useTransform(scrollYProgress, [0, 1], [0, 70]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden pt-36 sm:pt-40">
+    <section ref={sectionRef} className="relative overflow-hidden pt-24 sm:pt-40">
       <motion.div className="hero-orb hero-orb-left" style={{ x: leftOrbX }} />
       <motion.div className="hero-orb hero-orb-right" style={{ x: rightOrbX }} />
       <Container className="relative">
@@ -100,7 +100,6 @@ export function HeroSection() {
         <div className="mx-auto w-full max-w-[min(1280px,calc(100vw-2rem))]">
           <div className="dashboard-shell rounded-[28px] border border-white/10 bg-[#0e1019] p-2 shadow-[0_40px_120px_rgba(0,0,0,0.45)] sm:rounded-[32px] sm:p-2.5 md:p-3">
             <div className="relative overflow-hidden rounded-[20px] border border-white/10 sm:rounded-[24px]">
-              <div className="dashboard-lights" aria-hidden="true" />
               <img
                 src={assets.heroDashboard}
                 alt="Cryptix dashboard"
