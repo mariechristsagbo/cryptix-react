@@ -9,7 +9,7 @@ const benefitIcons = [ShieldIcon, BoltIcon, CoinIcon, GridIcon];
 
 export function WhySection() {
   return (
-    <motion.section id="why" className="border-y border-white/10 py-24 sm:py-32" {...fadeUp()}>
+    <motion.section id="why" className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <SectionHeading
           eyebrow="Why Choose Cryptix?"

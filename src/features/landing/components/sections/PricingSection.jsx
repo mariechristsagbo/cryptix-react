@@ -10,7 +10,7 @@ export function PricingSection() {
   const [billing, setBilling] = useState("monthly");
 
   return (
-    <motion.section id="pricing" className="border-y border-white/10 py-24 sm:py-32" {...fadeUp()}>
+    <motion.section id="pricing" className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <SectionHeading
           eyebrow="Choose Your Plan. Start Trading Today."

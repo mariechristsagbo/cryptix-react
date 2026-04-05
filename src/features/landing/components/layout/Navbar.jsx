@@ -13,7 +13,7 @@ export function Navbar({ isOpen, onToggle, onNavigate }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: easing }}
     >
-      <Container className="rounded-[28px] border border-white/10 bg-[rgba(8,7,14,0.8)] backdrop-blur-xl">
+      <Container className="rounded-[28px] border border-white/10 bg-[rgba(8,7,14,0.8)] backdrop-blur-xl lg:max-w-[1080px]">
         <div className="flex h-20 items-center justify-between">
           <a href="#" className="flex items-center gap-2">
             <LogoMark className="h-6 w-[26px]" />

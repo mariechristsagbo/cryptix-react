@@ -6,7 +6,7 @@ import { easing, fadeUp, staggerContainer, staggerItem } from "../../../../share
 
 export function StepsSection() {
   return (
-    <motion.section id="howitworks" className="border-y border-white/10 py-24 sm:py-32" {...fadeUp()}>
+    <motion.section id="howitworks" className="py-24 sm:py-32" {...fadeUp()}>
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
